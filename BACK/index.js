@@ -51,3 +51,15 @@ app.post("/guardarAlumno/:apellidos/:nombres/:fechaNacimiento/:apellidosRepresen
        }
    });
 });
+
+app.get('/listarAlumnos', function(req, res){
+    modelAlumno.find(function(err, resultado){
+        if(!err){
+            res.send(resultado);
+        }
+        else{
+            res.send(err);
+            console.log(err);
+        }
+    });
+});
