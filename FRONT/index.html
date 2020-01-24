@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Admin Escuela</title>
+</head>
+<body>
+
+    <div class="container" style="margin-top: 15px!important;">
+            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Lista Alumnos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Agregar Alumno</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Otro</a>
+        </li>
+      </ul>
+      <div class="tab-content" id="pills-tabContent">
+        <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+            <table class="table-hover table table-bordered table-sm">
+                <thead class="text-center" style="color: white;">
+                 <tr>
+                     <th class="bg-info" colspan="4">Alumno</th>
+                     <th class="bg-primary" colspan="2">Representante</th>
+                     <th class="bg-warning text-dark" colspan="2">Acción</th>
+                 </tr>
+                    <tr>
+                    <th class="bg-info">Nombres</th class="bg-success">
+                    <th class="bg-info">Apellidos</th class="bg-success">
+                    <th class="bg-info">Fecha Nac</th class="bg-success">
+                    <th class="bg-info">Cédula</th class="bg-success">
+                    <th class="bg-primary">Nombres</th class="bg-primary">
+                    <th class="bg-primary">Cédula</th class="bg-primary">
+                    <th class="bg-warning text-dark">Editar</th class="bg-primary">
+                    <th class="bg-warning text-dark">Borrar</th class="bg-primary">
+                </tr>
+                </thead>
+                <tbody id="cuerpoTablaAlumnos"></tbody>
+            </table>
+        </div>
+        <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+            <form>
+                <h4>Datos del Alumno</h4>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Apellidos</label>
+                  <input type="text" class="form-control" id="apellidos">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Nombres</label>
+                    <input type="text" class="form-control" id="nombres">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Fecha de Nacimiento</label>
+                    <input type="date" max="9999-12-31" class="form-control" id="fechaNacimiento">
+                  </div>
+                  <br>
+                  <h4>Datos del Representante</h4>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Apellidos</label>
+                    <input type="text" class="form-control" id="apellidosRepresentante">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Nombres</label>
+                    <input type="text" class="form-control" id="nombresRepresentante">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Cédula del Representante</label>
+                    <input type="text" class="form-control" id="cedulaRepresentante">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Número de teléfono</label>
+                    <input type="text" class="form-control" id="telefonoRepresentante">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Dirección</label>
+                    <input type="text" class="form-control" id="direccion">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleFormControlTextarea1">Observación</label>
+                    <textarea class="form-control" id="observacion" rows="3"></textarea>
+                  </div>
+                <!-- <div class="form-group form-check">
+                  <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                  <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                </div> -->
+                <div class="row text-right">
+                    <div class="col col-lg-12">
+                        <button type="submit" class="btn btn-primary" style="margin-bottom: 15px!important;">Guardar</button>
+                    </div>
+                </div>
+              </form>
+        </div>
+        <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">En Desarrollo</div>
+      </div>
+        <div class="row"></div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+</body>
+</html>
