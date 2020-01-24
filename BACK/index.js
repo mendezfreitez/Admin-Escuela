@@ -19,7 +19,7 @@ mongoose.connect('mongodb://localhost:27017/escuelaDB',{ useNewUrlParser: true, 
 const modelAlumno = mongoose.model("alumnos", mongoose.Schema({
     apellidos:String,
     nombres:String,
-    fechaNac:Date,
+    fechaNac:String,
     apellidosRepre: String,
     nombresRepre:String,
     cedulaRepre:String,
