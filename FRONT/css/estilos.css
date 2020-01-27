@@ -5,3 +5,9 @@ input{
    display: inline-block;
    width: 50%;
 }
+.trsup{
+    background-color: #0097a7!important;
+}
+.trinf{
+    background-color: #4db6ac!important;
+}
