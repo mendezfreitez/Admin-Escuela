@@ -72,6 +72,7 @@ function verAlumno(id){
             document.getElementById('telefonoRepresentante2').value = dato.telefonoRepre;
             document.getElementById('direccion2').value = dato.direccion;
             document.getElementById('observacion2').value = dato.observacion;
+            document.getElementById('_id').value = id;
         }
         rr.send();
     }
@@ -97,5 +98,21 @@ function editarAlumno(){
 }
 
 function guardarEdicionAlumno(){
+    var apellidos = document.getElementById('apellidos2').value;
+    var nombres = document.getElementById('nombres2').value;
+    var fechaNacimiento = document.getElementById('fechaNacimiento2').value;
+    var apellidosRepresentante = document.getElementById('apellidosRepresentante2').value;
+    var nombresRepresentante = document.getElementById('nombresRepresentante2').value;
+    var cedulaRepresentante = document.getElementById('cedulaRepresentante2').value;
+    var telefonoRepresentante = document.getElementById('telefonoRepresentante2').value;
+    var direccion = document.getElementById('direccion2').value;
+    var observacion = document.getElementById('observacion2').value;
+    var _id =document.getElementById('_id').value;
 
+    var r = new XMLHttpRequest();
+    r.open("POST",`${url}/guardarEdicionAlumno/${apellidos}/${nombres}/${fechaNacimiento}/${apellidosRepresentante}/${nombresRepresentante}/${cedulaRepresentante}/${telefonoRepresentante}/${direccion}/${observacion}/${_id}`);
+    r.onload = function(){
+        alert(this.response);
+    }
+    r.send();
 }

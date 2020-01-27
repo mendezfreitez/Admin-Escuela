@@ -28,7 +28,6 @@ const modelAlumno = mongoose.model("alumnos", mongoose.Schema({
     observacion:String
 }));
 
-//${apellidos}/${nombres}/${fechaNacimiento}/${apellidosRepresentante}/${nombresRepresentante}/${cedulaRepresentante}/${telefonoRepresentante}/${direccion}/${observaacion}
 app.post("/guardarAlumno/:apellidos/:nombres/:fechaNacimiento/:apellidosRepresentante/:nombresRepresentante/:cedulaRepresentante/:telefonoRepresentante/:direccion/:observacion", function(req, res){
    const alumno = new modelAlumno({
     apellidos:req.params.apellidos,
@@ -71,6 +70,28 @@ app.get("/verAlumno/:id", function(req, res){
         }
         else{
             res.send(resultado);
+        }
+    });
+});
+//    r.open("POST",`${url}/${apellidos}/${nombres}/${fechaNacimiento}/${apellidosRepresentante}/${nombresRepresentante}/${cedulaRepresentante}/${telefonoRepresentante}/${direccion}/${observacion}/${_id}`);
+app.post('/guardarEdicionAlumno/:apellidos/:nombres/:fechaNacimiento/:apellidosRepresentante/:nombresRepresentante/:cedulaRepresentante/:telefonoRepresentante/:direccion/:observacion/:_id', function(req, res){
+    modelAlumno({
+        apellidos:res.params.apellidos,
+        nombres:req.params.nombres,
+        fechaNac:req.params.fechaNacimiento,
+        apellidosRepre:req.params.apellidosRepresentante,
+        nombresRepre:req.params.nombresRepresentante,
+        cedulaRepre:req.params.telefonoRepresentante,
+        direccion:req.params.direccion,
+        observacion:req.params.observacion,
+        _id:req.params._id
+    });
+    modelAlumno.findByIdAndUpdate({ _id:req.params._id }, { $set:modelAlumno }, function(err){
+        if(err){
+            res.send(err);
+        }
+        else{
+            res.send("Editado exitosamente.");
         }
     });
 });
