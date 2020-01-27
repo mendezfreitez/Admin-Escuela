@@ -75,18 +75,19 @@ app.get("/verAlumno/:id", function(req, res){
 });
 //    r.open("POST",`${url}/${apellidos}/${nombres}/${fechaNacimiento}/${apellidosRepresentante}/${nombresRepresentante}/${cedulaRepresentante}/${telefonoRepresentante}/${direccion}/${observacion}/${_id}`);
 app.post('/guardarEdicionAlumno/:apellidos/:nombres/:fechaNacimiento/:apellidosRepresentante/:nombresRepresentante/:cedulaRepresentante/:telefonoRepresentante/:direccion/:observacion/:_id', function(req, res){
-    modelAlumno({
-        apellidos:res.params.apellidos,
+    const unAlumno = new modelAlumno({
+        apellidos:req.params.apellidos,
         nombres:req.params.nombres,
         fechaNac:req.params.fechaNacimiento,
         apellidosRepre:req.params.apellidosRepresentante,
         nombresRepre:req.params.nombresRepresentante,
-        cedulaRepre:req.params.telefonoRepresentante,
+        cedulaRepre:req.params.cedulaRepresentante,
+        telefonoRepre:req.params.telefonoRepresentante,
         direccion:req.params.direccion,
         observacion:req.params.observacion,
         _id:req.params._id
     });
-    modelAlumno.findByIdAndUpdate({ _id:req.params._id }, { $set:modelAlumno }, function(err){
+    modelAlumno.findByIdAndUpdate(req.params._id , { $set:unAlumno }, function(err){
         if(err){
             res.send(err);
         }

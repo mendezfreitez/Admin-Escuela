@@ -61,10 +61,10 @@ function verAlumno(id){
         var rr = new XMLHttpRequest();
         rr.open("GET", `${url}/verAlumno/${id}`);
         rr.onload = function(){
-            console.log(JSON.parse(this.response));
+            //console.log(JSON.parse(this.response));
             var dato = JSON.parse(this.response);
-            document.getElementById('apellidos2').value = dato.nombres;
-            document.getElementById('nombres2').value = dato.apellidos;
+            document.getElementById('apellidos2').value = dato.apellidos;
+            document.getElementById('nombres2').value = dato.nombres;
             document.getElementById('fechaNacimiento2').value = dato.fechaNac;
             document.getElementById('apellidosRepresentante2').value = dato.apellidosRepre;
             document.getElementById('nombresRepresentante2').value = dato.nombresRepre;
@@ -110,7 +110,7 @@ function guardarEdicionAlumno(){
     var _id =document.getElementById('_id').value;
 
     var r = new XMLHttpRequest();
-    r.open("POST",`${url}/guardarEdicionAlumno/${apellidos}/${nombres}/${fechaNacimiento}/${apellidosRepresentante}/${nombresRepresentante}/${cedulaRepresentante}/${telefonoRepresentante}/${direccion}/${observacion}/${_id}`);
+    r.open("POST",`${url}/guardarEdicionAlumno/${apellidos}/${nombres}/${fechaNacimiento}/${apellidosRepresentante}/${nombresRepresentante}/${cedulaRepresentante}/${telefonoRepresentante}/${direccion}/${observacion}/${_id}`, true);
     r.onload = function(){
         alert(this.response);
     }
