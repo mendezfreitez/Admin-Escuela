@@ -37,10 +37,10 @@ function listarAlumnos(){
                     <td>${resultado[t].cedulaRepre}</td>
                     <td>${resultado[t].telefonoRepre}</td>
                     <td class="text-center">
-                        <button data-toggle="pill" href="#pills-alumno" class="btn btn-sm btn-primary" onclick="verAlumno('${resultado[t]._id}')">Ver</button>
+                        <button data-toggle="pill" href="#pills-alumno" class="btn btn-sm btn-outline-success" onclick="verAlumno('${resultado[t]._id}')">Ver</button>
                     </td>
                     <td class="text-center">
-                        <button class="btn btn-sm btn-danger" onclick="borrarAlumno('${resultado[t]._id}')">Borrar</button>
+                        <button class="btn btn-sm btn-outline-danger" onclick="borrarAlumno('${resultado[t]._id}')">Borrar</button>
                     </td>
                 </tr>
             `;
