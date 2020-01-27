@@ -52,22 +52,48 @@ function listarAlumnos(){
 }
 
 function verAlumno(id){
+
     var r = new XMLHttpRequest();
-    r.open("GET", `${url}/verAlumno/${id}`);
+    r.open("GET","../VIEWS/verAlumno.html");
     r.onload = function(){
-        console.log(JSON.parse(this.response));
-        var dato = JSON.parse(this.response);
-        document.getElementById('apellidos2').value = dato.nombres;
-        document.getElementById('nombres2').value = dato.apellidos;
-        document.getElementById('fechaNacimiento2').value = dato.fechaNac;
-        document.getElementById('apellidosRepresentante2').value = dato.apellidosRepre;
-        document.getElementById('nombresRepresentante2').value = dato.nombresRepre;
-        document.getElementById('cedulaRepresentante2').value = dato.cedulaRepre;
-        document.getElementById('telefonoRepresentante2').value = dato.telefonoRepre;
-        document.getElementById('direccion2').value = dato.direccion;
-        document.getElementById('observacion2').value = dato.observacion;
+        document.getElementById('pills-alumno').innerHTML = this.response;
+
+        var rr = new XMLHttpRequest();
+        rr.open("GET", `${url}/verAlumno/${id}`);
+        rr.onload = function(){
+            console.log(JSON.parse(this.response));
+            var dato = JSON.parse(this.response);
+            document.getElementById('apellidos2').value = dato.nombres;
+            document.getElementById('nombres2').value = dato.apellidos;
+            document.getElementById('fechaNacimiento2').value = dato.fechaNac;
+            document.getElementById('apellidosRepresentante2').value = dato.apellidosRepre;
+            document.getElementById('nombresRepresentante2').value = dato.nombresRepre;
+            document.getElementById('cedulaRepresentante2').value = dato.cedulaRepre;
+            document.getElementById('telefonoRepresentante2').value = dato.telefonoRepre;
+            document.getElementById('direccion2').value = dato.direccion;
+            document.getElementById('observacion2').value = dato.observacion;
+        }
+        rr.send();
     }
     r.send();
+
+
+
+
+}
+
+function editarAlumno(){
+    document.getElementById('btnGuardarEdicionAlumno').setAttribute('style','display:inline-block;');
+    document.getElementById('btnEditarAlumno').setAttribute('style','display:none;');
+    document.getElementById('apellidos2').removeAttribute('disabled');
+    document.getElementById('nombres2').removeAttribute('disabled');
+    document.getElementById('fechaNacimiento2').removeAttribute('disabled');
+    document.getElementById('apellidosRepresentante2').removeAttribute('disabled');
+    document.getElementById('nombresRepresentante2').removeAttribute('disabled');
+    document.getElementById('cedulaRepresentante2').removeAttribute('disabled');
+    document.getElementById('telefonoRepresentante2').removeAttribute('disabled');
+    document.getElementById('direccion2').removeAttribute('disabled');
+    document.getElementById('observacion2').removeAttribute('disabled');
 }
 
 function guardarEdicionAlumno(){
