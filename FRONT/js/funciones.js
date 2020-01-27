@@ -1,5 +1,5 @@
 const url = "http://localhost:27017";
-
+document.getElementById('pills-home-tab').classList.remove('active');
 var lista = "";
 function guardarAlumno(){
     var apellidos = document.getElementById('apellidos').value;
@@ -73,6 +73,7 @@ function verAlumno(id){
             document.getElementById('direccion2').value = dato.direccion;
             document.getElementById('observacion2').value = dato.observacion;
             document.getElementById('_id').value = id;
+            document.getElementById('pills-home-tab').classList.remove('active');
         }
         rr.send();
     }
@@ -107,12 +108,13 @@ function guardarEdicionAlumno(){
     var telefonoRepresentante = document.getElementById('telefonoRepresentante2').value;
     var direccion = document.getElementById('direccion2').value;
     var observacion = document.getElementById('observacion2').value;
-    var _id =document.getElementById('_id').value;
+    var _id = document.getElementById('_id').value;
 
     var r = new XMLHttpRequest();
     r.open("POST",`${url}/guardarEdicionAlumno/${apellidos}/${nombres}/${fechaNacimiento}/${apellidosRepresentante}/${nombresRepresentante}/${cedulaRepresentante}/${telefonoRepresentante}/${direccion}/${observacion}/${_id}`, true);
     r.onload = function(){
         alert(this.response);
+        verAlumno(_id);
     }
     r.send();
 }

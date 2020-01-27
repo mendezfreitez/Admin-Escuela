@@ -7,7 +7,7 @@ app.listen(27017, function(){
     console.log("Escuchando el puerto 27017");
 });
 
-mongoose.connect('mongodb://localhost:27017/escuelaDB',{ useNewUrlParser: true, useUnifiedTopology: true },function(err){
+mongoose.connect('mongodb://localhost:27017/escuelaDB',{ useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify:false },function(err){
     if(err) {
         console.log("ERROR = " + err);
     }
@@ -87,7 +87,7 @@ app.post('/guardarEdicionAlumno/:apellidos/:nombres/:fechaNacimiento/:apellidosR
         observacion:req.params.observacion,
         _id:req.params._id
     });
-    modelAlumno.findByIdAndUpdate(req.params._id , { $set:unAlumno }, function(err){
+    modelAlumno.findByIdAndUpdate(req.params._id, { $set:unAlumno }, function(err){
         if(err){
             res.send(err);
         }
