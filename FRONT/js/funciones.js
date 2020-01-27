@@ -1,4 +1,5 @@
 const url = "http://localhost:27017";
+
 var lista = "";
 function guardarAlumno(){
     var apellidos = document.getElementById('apellidos').value;
@@ -24,7 +25,7 @@ function listarAlumnos(){
     r.open("GET",`${url}/listarAlumnos`, true);
     r.onload = function(){
         var resultado = JSON.parse(this.response);
-        console.log(resultado);
+        //console.log(resultado);
        
         for(var t = 0;t < resultado.length; t++){
             lista += `
@@ -36,7 +37,7 @@ function listarAlumnos(){
                     <td>${resultado[t].cedulaRepre}</td>
                     <td>${resultado[t].telefonoRepre}</td>
                     <td class="text-center">
-                        <button class="btn btn-sm btn-primary" onclick="editarAlumno('${resultado[t]._id}')">Editar</button>
+                        <button data-toggle="pill" href="#pills-alumno" class="btn btn-sm btn-primary" onclick="verAlumno('${resultado[t]._id}')">Ver</button>
                     </td>
                     <td class="text-center">
                         <button class="btn btn-sm btn-danger" onclick="borrarAlumno('${resultado[t]._id}')">Borrar</button>
@@ -48,4 +49,27 @@ function listarAlumnos(){
         lista="";
     }
     r.send();
+}
+
+function verAlumno(id){
+    var r = new XMLHttpRequest();
+    r.open("GET", `${url}/verAlumno/${id}`);
+    r.onload = function(){
+        console.log(JSON.parse(this.response));
+        var dato = JSON.parse(this.response);
+        document.getElementById('apellidos2').value = dato.nombres;
+        document.getElementById('nombres2').value = dato.apellidos;
+        document.getElementById('fechaNacimiento2').value = dato.fechaNac;
+        document.getElementById('apellidosRepresentante2').value = dato.apellidosRepre;
+        document.getElementById('nombresRepresentante2').value = dato.nombresRepre;
+        document.getElementById('cedulaRepresentante2').value = dato.cedulaRepre;
+        document.getElementById('telefonoRepresentante2').value = dato.telefonoRepre;
+        document.getElementById('direccion2').value = dato.direccion;
+        document.getElementById('observacion2').value = dato.observacion;
+    }
+    r.send();
+}
+
+function guardarEdicionAlumno(){
+
 }

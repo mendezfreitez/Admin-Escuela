@@ -63,3 +63,14 @@ app.get('/listarAlumnos', function(req, res){
         }
     });
 });
+
+app.get("/verAlumno/:id", function(req, res){
+    modelAlumno.findById(req.params.id, function(err,resultado){
+        if(err){
+            res.send(err);
+        }
+        else{
+            res.send(resultado);
+        }
+    });
+});
