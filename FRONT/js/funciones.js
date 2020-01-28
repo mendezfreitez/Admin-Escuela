@@ -123,7 +123,6 @@ function borrarAlumno(id){
         r.open("POST",`${url}/borrrarAlumno/${id}`, true);
         r.onload = function(){
             if(this.response === "1"){
-                // alert("Borrado con exitosamente!");
                 listarAlumnos();
             }
         }
