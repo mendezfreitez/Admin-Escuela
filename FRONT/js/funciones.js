@@ -129,3 +129,23 @@ function borrarAlumno(id){
         r.send();
     }
 }
+
+function guardarMaestro(){
+    var apellidos = document.getElementById('apellidosMaestro').value;
+    var nombres = document.getElementById('nombresMaestro').value;
+    var fechaNac = document.getElementById('fechaNacMaestro').value;
+    var cedula = document.getElementById('cedulaMaestro').value;
+    var direccion = document.getElementById('direccionMaestro').value;
+    var observacion = document.getElementById('observacionMaestro').value;
+
+    var r = new XMLHttpRequest();
+    r.open("POST", `${url}/guardarMaestro/${apellidos}/${nombres}/${fecha}/${cedula}/${direccion}/${observacion}`);
+    r.onload = function(){
+        alert(this.response);
+    }
+    r.send();
+}
+
+function listarMaestros(){
+    alert("en desarrollo");
+}

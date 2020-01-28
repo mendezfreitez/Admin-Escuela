@@ -9,7 +9,6 @@
     <title>Admin Escuela</title>
 </head>
 <body>
-<!-- comentario -->
     <div class="container" style="margin-top: 15px!important;">
             <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
         <li class="nav-item">
@@ -18,9 +17,12 @@
         <li class="nav-item">
           <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Agregar Alumno</a>
         </li>
-        <!-- <li class="nav-item">
-          <a class="nav-link" id="pills-alumno-tab" data-toggle="pill" href="#pills-alumno" role="tab" aria-controls="pills-alumno" aria-selected="false">Otro</a>
-        </li> -->
+        <li class="nav-item">
+          <a onclick="listarMaestros()" class="nav-link" id="pills-maestros-tab" data-toggle="pill" href="#pills-maestros" role="tab" aria-controls="pills-maestros" aria-selected="true">Lista Maestros</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="pills-add-maestro" data-toggle="pill" href="#pills-add-maestros" role="tab" aria-controls="pills-add-maestros" aria-selected="false">Agregar Maestro</a>
+        </li>
       </ul>
       <div class="tab-content" id="pills-tabContent">
         <div class="tab-pane fade active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
@@ -116,6 +118,60 @@
         </div>
         <div class="tab-pane fade" id="pills-alumno" role="tabpanel" aria-labelledby="pills-alumno-tab">
 
+        </div>  
+
+        <div class="tab-pane fade" id="pills-maestros" role="tabpanel" aria-labelledby="pills-maestros">
+            Listar Maestros
+        </div>
+        <div class="tab-pane fade" id="pills-add-maestros" role="tabpanel" aria-labelledby="pills-add-maestros">
+          <div class="row">
+            <div class="col col-xs-12 col-sm-12 col-md-3 col-lg-3"></div>
+            <div class="col col-xs-12 col-sm-12 col-md-6 col-lg-6">
+              <h4>Datos Maestro(a)</h4>
+              <div class="row">
+                <div class="col">
+                  <label for="exampleInputEmail1">Apellidos</label>
+                  <input type="text" class="form-control" id="apellidosMaestro">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <label for="exampleInputEmail1">Nombres</label>
+                  <input type="text" class="form-control" id="nombresMaestro">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <label for="exampleInputEmail1">Fecha de Nacimiento</label>
+                  <input type="date" max="9999-12-31" class="form-control" id="fechaNacMaestro">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <label for="exampleInputEmail1">Cédula</label>
+                  <input type="text" class="form-control" id="cedulaMaestro">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <label for="exampleInputEmail1">Dirección</label>
+                  <input type="text" class="form-control" id="direccionMaestro">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <label for="exampleFormControlTextarea1">Observación</label>
+                  <textarea class="form-control" id="observacionMaestro" rows="3"></textarea disabled>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col text-right" style="margin-top: 15px!important;">
+                     <button onclick="guardarMaestro()" class="btn btn-primary" style="margin-bottom: 15px!important;">Guardar</button>
+                </div>
+              </div>
+            </div>
+            <div class="col col-xs-12 col-sm-12 col-md-3 col-lg-3"></div>
+          </div>
         </div>  
       </div>
         <div class="row"></div>

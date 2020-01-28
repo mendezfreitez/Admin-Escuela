@@ -107,3 +107,31 @@ app.post('/borrrarAlumno/:id', function(req, res){
         }
     });
 });
+
+var modelMaestro = mongoose.model('maestros', mongoose.Schema({
+    apellidos:String,
+    nombres:String,
+    fechaNac:String,
+    cedula:String,
+    direccion:String,
+    observacion:String
+}));
+
+app.post('/guardarMaestro/:apellidos/:nombres/:fecha/:cedula/:direccion/:observacion', function(req,res){
+    var unMaestro = new modelMaestro({
+        apellidos:req.params.apellidos,
+        nombres:req.params.nombres,
+        fecha:req.params.fecha,
+        cedula:req.params.cedula,
+        direccion:req.params.direccion,
+        observacion:req.params.observacion
+    });
+    unMaestro.save(function(err){
+        if(err){
+            res.send(err);
+        }
+        else{
+            res.send("Guardado con éxito.");
+        }
+    });
+});
