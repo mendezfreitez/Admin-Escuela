@@ -96,3 +96,14 @@ app.post('/guardarEdicionAlumno/:apellidos/:nombres/:fechaNacimiento/:apellidosR
         }
     });
 });
+
+app.post('/borrrarAlumno/:id', function(req, res){
+    modelAlumno.remove({_id:req.params.id}, function(err){
+        if(err){
+            res.send(err);
+        }
+        else{
+            res.send("1");
+        }
+    });
+});

@@ -60,6 +60,7 @@ function verAlumno(id){
 
         var rr = new XMLHttpRequest();
         rr.open("GET", `${url}/verAlumno/${id}`);
+
         rr.onload = function(){
             //console.log(JSON.parse(this.response));
             var dato = JSON.parse(this.response);
@@ -78,10 +79,6 @@ function verAlumno(id){
         rr.send();
     }
     r.send();
-
-
-
-
 }
 
 function editarAlumno(){
@@ -117,4 +114,19 @@ function guardarEdicionAlumno(){
         verAlumno(_id);
     }
     r.send();
+}
+
+function borrarAlumno(id){
+    var confirmar = confirm('¿Está seguro(a) de querer borrar este alunno(a)?');
+    if(confirmar){
+        var r = new XMLHttpRequest();
+        r.open("POST",`${url}/borrrarAlumno/${id}`, true);
+        r.onload = function(){
+            if(this.response === "1"){
+                // alert("Borrado con exitosamente!");
+                listarAlumnos();
+            }
+        }
+        r.send();
+    }
 }
