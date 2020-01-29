@@ -177,7 +177,12 @@ function listarMaestros(){
 }
 
 function verMaestro(id){
-    alert(id);
+    var r = new XMLHttpRequest();
+    r.open("GET", "../VIEWS/verMaestro.html", true);
+    r.onload = function(){
+        document.getElementById('pills-ver-maestros').innerHTML = this.response;
+    }
+    r.send();
 }
 
 function borrarMaestro(id){

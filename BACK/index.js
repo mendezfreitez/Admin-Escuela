@@ -3,6 +3,7 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const app = express();
 app.use(cors());
+
 app.listen(27017, function(){
     console.log("Escuchando el puerto 27017");
 });
@@ -72,7 +73,7 @@ app.get("/verAlumno/:id", function(req, res){
         }
     });
 });
-//    r.open("POST",`${url}/${apellidos}/${nombres}/${fechaNacimiento}/${apellidosRepresentante}/${nombresRepresentante}/${cedulaRepresentante}/${telefonoRepresentante}/${direccion}/${observacion}/${_id}`);
+
 app.post('/guardarEdicionAlumno/:apellidos/:nombres/:fechaNacimiento/:apellidosRepresentante/:nombresRepresentante/:cedulaRepresentante/:telefonoRepresentante/:direccion/:observacion/:_id', function(req, res){
     const unAlumno = new modelAlumno({
         apellidos:req.params.apellidos,
