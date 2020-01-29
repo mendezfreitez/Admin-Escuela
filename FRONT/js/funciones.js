@@ -133,7 +133,7 @@ function borrarAlumno(id){
 function guardarMaestro(){
     var apellidos = document.getElementById('apellidosMaestro').value;
     var nombres = document.getElementById('nombresMaestro').value;
-    var fechaNac = document.getElementById('fechaNacMaestro').value;
+    var fecha = document.getElementById('fechaNacMaestro').value;
     var cedula = document.getElementById('cedulaMaestro').value;
     var direccion = document.getElementById('direccionMaestro').value;
     var observacion = document.getElementById('observacionMaestro').value;
@@ -147,5 +147,39 @@ function guardarMaestro(){
 }
 
 function listarMaestros(){
-    alert("en desarrollo");
+    var r = new XMLHttpRequest();
+    r.open("GET", `${url}/listarMaestros`, true);
+    r.onload = function(){
+        var lista = JSON.parse(this.response);
+        var filas = "";
+
+        for(var t = 0; t < lista.length; t++){
+            filas += `
+                <tr>
+                    <td>${lista[t].apellidos}</td>
+                    <td>${lista[t].nombres}</td>
+                    <td>${lista[t].fecha}</td>
+                    <td>${lista[t].cedula}</td>
+                    <td>${lista[t].direccion}</td>
+                    <td>${lista[t].observacion}</td>
+                    <td class="text-center">
+                        <button data-toggle="pill" href="#pills-ver-maestros" class="btn btn-sm btn-outline-success" onclick="verMaestro('${lista[t]._id}')">Ver</button>
+                    </td>
+                    <td class="text-center">
+                        <button class="btn btn-sm btn-outline-danger" onclick="borrarMaestro('${lista[t]._id}')">Borrar</button>
+                    </td>
+                </tr>
+            `;
+        }
+        document.getElementById('cuerpoTablaMaestros').innerHTML = filas;
+    }
+    r.send();
+}
+
+function verMaestro(id){
+    alert(id);
+}
+
+function borrarMaestro(id){
+    alert(id);
 }

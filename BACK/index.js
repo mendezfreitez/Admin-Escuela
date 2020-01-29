@@ -58,7 +58,6 @@ app.get('/listarAlumnos', function(req, res){
         }
         else{
             res.send(err);
-            console.log(err);
         }
     });
 });
@@ -111,7 +110,7 @@ app.post('/borrrarAlumno/:id', function(req, res){
 var modelMaestro = mongoose.model('maestros', mongoose.Schema({
     apellidos:String,
     nombres:String,
-    fechaNac:String,
+    fecha:String,
     cedula:String,
     direccion:String,
     observacion:String
@@ -132,6 +131,18 @@ app.post('/guardarMaestro/:apellidos/:nombres/:fecha/:cedula/:direccion/:observa
         }
         else{
             res.send("Guardado con éxito.");
+        }
+    });
+});
+
+app.get('/listarMaestros',function(req, res){
+    modelMaestro.find(function(err, resultado){
+        if(err){
+            res.send(err);
+            console.log(err);
+        }
+        else{
+            res.send(resultado);
         }
     });
 });
