@@ -180,9 +180,9 @@ function verMaestro(id){
     var r = new XMLHttpRequest();
     r.open("GET", "../VIEWS/verMaestro.html", true);
     r.onload = function(){
-
+        document.getElementById('pills-ver-maestros').innerHTML = this.response;
         var rr = new XMLHttpRequest();
-        rr.open("POST", `${url}/verMaestro/${id}`, true);
+        rr.open("GET", `${url}/verMaestro/${id}`, true);
         rr.onload = function(){
             var maestro = JSON.parse(this.response);
             document.getElementById('apellidosMaestro2').value = maestro.apellidos;
@@ -191,11 +191,9 @@ function verMaestro(id){
             document.getElementById('cedulaMaestro2').value = maestro.cedula;
             document.getElementById('direccionMaestro2').value = maestro.direccion;
             document.getElementById('observacionMaestro2').value = maestro.observacion;
+            console.log(maestro);
         }
         rr.send();
-
-
-        document.getElementById('pills-ver-maestros').innerHTML = this.response;
     }
     r.send();
 }
