@@ -191,10 +191,22 @@ function verMaestro(id){
             document.getElementById('cedulaMaestro2').value = maestro.cedula;
             document.getElementById('direccionMaestro2').value = maestro.direccion;
             document.getElementById('observacionMaestro2').value = maestro.observacion;
+            document.getElementById('pills-maestros-tab').classList.remove('active');
         }
         rr.send();
     }
     r.send();
+}
+
+function editarMaestro(){
+    document.getElementById('apellidosMaestro2').removeAttribute('disabled');
+    document.getElementById('nombresMaestro2').removeAttribute('disabled');
+    document.getElementById('fechaNacMaestro2').removeAttribute('disabled');
+    document.getElementById('cedulaMaestro2').removeAttribute('disabled');
+    document.getElementById('direccionMaestro2').removeAttribute('disabled');
+    document.getElementById('observacionMaestro2').removeAttribute('disabled');
+    document.getElementById('btnGuardarEdicionMaestro').setAttribute('style', 'display:inline-block');
+    document.getElementById('btnEditarMaestro').setAttribute('style', 'display:none');
 }
 
 function borrarMaestro(id){
