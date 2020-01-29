@@ -191,7 +191,6 @@ function verMaestro(id){
             document.getElementById('cedulaMaestro2').value = maestro.cedula;
             document.getElementById('direccionMaestro2').value = maestro.direccion;
             document.getElementById('observacionMaestro2').value = maestro.observacion;
-            console.log(maestro);
         }
         rr.send();
     }
