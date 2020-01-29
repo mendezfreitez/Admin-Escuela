@@ -180,6 +180,21 @@ function verMaestro(id){
     var r = new XMLHttpRequest();
     r.open("GET", "../VIEWS/verMaestro.html", true);
     r.onload = function(){
+
+        var rr = new XMLHttpRequest();
+        rr.open("POST", `${url}/verMaestro/${id}`, true);
+        rr.onload = function(){
+            var maestro = JSON.parse(this.response);
+            document.getElementById('apellidosMaestro2').value = maestro.apellidos;
+            document.getElementById('nombresMaestro2').value = maestro.nombres;
+            document.getElementById('fechaNacMaestro2').value = maestro.fecha;
+            document.getElementById('cedulaMaestro2').value = maestro.cedula;
+            document.getElementById('direccionMaestro2').value = maestro.direccion;
+            document.getElementById('observacionMaestro2').value = maestro.observacion;
+        }
+        rr.send();
+
+
         document.getElementById('pills-ver-maestros').innerHTML = this.response;
     }
     r.send();
