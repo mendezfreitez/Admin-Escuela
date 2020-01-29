@@ -181,5 +181,16 @@ function verMaestro(id){
 }
 
 function borrarMaestro(id){
-    alert(id);
+    var confirmacion = confirm("¿Esta seguro de borrar este maestro?");
+    if(confirmacion){
+        var r = new XMLHttpRequest();
+        r.open("POST", `${url}/borrarMaestro/${id}`, true);
+        r.onload = function(){
+            if(this.response === "1"){
+                listarMaestros();
+            }
+        }
+        r.send();
+    }
+
 }

@@ -146,3 +146,14 @@ app.get('/listarMaestros',function(req, res){
         }
     });
 });
+
+app.post('/borrarMaestro/:id', function(req, res){
+    modelMaestro.findByIdAndRemove(req.params.id, function(err, resultado){
+        if(err){
+            res.send(err);
+        }
+        else{
+            res.send("1");
+        }
+    });
+});

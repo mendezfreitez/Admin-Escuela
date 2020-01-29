@@ -11,3 +11,6 @@ input{
 .trinf{
     background-color: #4db6ac!important;
 }
+th,td{
+    white-space: nowrap!important;
+}
