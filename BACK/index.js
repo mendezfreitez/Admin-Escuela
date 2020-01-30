@@ -169,3 +169,23 @@ app.get('/verMaestro/:id', function(req, res){
         }
     });
 });
+
+app.post('/guardarEdicionMaestro/:apellidos/:nombres/:fecha/:cedula/:direccion/:observacion', function(req, res){
+    var unMaestro = new modelMaestro({
+        apellidos: req.params.apellidos,
+        nombres: req.params.nombres,
+        fecha: req.params.fecha,
+        cedula: req.params.cedula,
+        direccion: req.params.direccion,
+        observacion: req.params.observacion,
+        _id: req.params.id
+    });
+    unMaestro.findByIdAndUpdate(req.params.id, {$set:unMaestro}, function(err){
+        if(err){
+            res.send(err);
+        }
+        else{
+            res.send("1");
+        }
+    });
+});

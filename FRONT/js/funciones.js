@@ -209,6 +209,28 @@ function editarMaestro(){
     document.getElementById('btnEditarMaestro').setAttribute('style', 'display:none');
 }
 
+function guardarEdicionMaestro(){
+    var apellidos = document.getElementById('apellidosMaestro2').value;
+    var nombres = document.getElementById('nombresMaestro2').value;
+    var fecha = document.getElementById('fechaNacMaestro2').value;
+    var cedula = document.getElementById('cedulaMaestro2').value;
+    var direccion = document.getElementById('direccionMaestro2').value;
+    var observacion = document.getElementById('observacionMaestro2').value;
+    var id = document.getElementById('_id_').value;
+
+    var r = new XMLHttpRequest();
+    r.open("POST", `${url}/guardarEdicionMaestro/${apellidos}/${nombres}/${fecha}/${cedula}/${direccion}/${observacion}/${id}`, true);
+    r.onload = function(){
+        if(this.response === "1"){
+            alert("Guardado con éxito.");
+        }
+        else{
+            alert(this.response);
+        }
+    }
+    r.send();
+}
+
 function borrarMaestro(id){
     var confirmacion = confirm("¿Esta seguro de borrar este maestro?");
     if(confirmacion){
