@@ -191,6 +191,7 @@ function verMaestro(id){
             document.getElementById('cedulaMaestro2').value = maestro.cedula;
             document.getElementById('direccionMaestro2').value = maestro.direccion;
             document.getElementById('observacionMaestro2').value = maestro.observacion;
+            document.getElementById('_id_').value = maestro._id;
             document.getElementById('pills-maestros-tab').classList.remove('active');
         }
         rr.send();
@@ -216,13 +217,14 @@ function guardarEdicionMaestro(){
     var cedula = document.getElementById('cedulaMaestro2').value;
     var direccion = document.getElementById('direccionMaestro2').value;
     var observacion = document.getElementById('observacionMaestro2').value;
-    var id = document.getElementById('_id_').value;
+    var _id = document.getElementById('_id_').value;
 
     var r = new XMLHttpRequest();
-    r.open("POST", `${url}/guardarEdicionMaestro/${apellidos}/${nombres}/${fecha}/${cedula}/${direccion}/${observacion}/${id}`, true);
+    r.open("POST", `${url}/guardarEdicionMaestro/${apellidos}/${nombres}/${fecha}/${cedula}/${direccion}/${observacion}/${_id}`, true);
     r.onload = function(){
         if(this.response === "1"){
             alert("Guardado con éxito.");
+            verMaestro(_id);
         }
         else{
             alert(this.response);
