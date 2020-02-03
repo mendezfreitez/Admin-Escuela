@@ -15,7 +15,7 @@
           <a onclick="listarAlumnos()" class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Lista Alumnos</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Agregar Alumno</a>
+          <a onclick="traerMaestros()" class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Agregar Alumno</a>
         </li>
         <li class="nav-item">
           <a onclick="listarMaestros()" class="nav-link" id="pills-maestros-tab" data-toggle="pill" href="#pills-maestros" role="tab" aria-controls="pills-maestros" aria-selected="true">Lista Maestros</a>
@@ -83,6 +83,15 @@
                   <textarea class="form-control" id="observacion" rows="3"></textarea disabled>
                 </div>
               </div>
+
+              <div class="row">
+                <div class="col">
+                    <label>Maestro</label>
+                    <select name="" id="selectMaestros" class="form-control">
+                    </select>
+                </div>
+              </div>
+
             </div>
             <div class="col col-xs-12 col-sm-12 col-md-6 col-lg-6">
               <h4>Datos del Representante</h4>

@@ -1,6 +1,23 @@
 const url = "http://localhost:27017";
 document.getElementById('pills-home-tab').classList.remove('active');
 var lista = "";
+
+function traerMaestros(){
+    var r = new XMLHttpRequest();
+    r.open("GET", `${url}/traerMaestros`, true);
+    r.onload = function(){
+        var listaMaestros = JSON.parse(this.response);
+        var lista = "<option value=\"\">Seleccione</option>";
+
+        //console.log(listaMaestros);
+        for(var t = 0; t < listaMaestros.length; t++){
+            lista += `<option value=\"${listaMaestros[t]._id}\">${listaMaestros[t].apellidos} ${listaMaestros[t].nombres}</option>`;
+        }
+        document.getElementById('selectMaestros').innerHTML = lista;
+    }
+    r.send();
+}
+
 function guardarAlumno(){
     var apellidos = document.getElementById('apellidos').value;
     var nombres = document.getElementById('nombres').value;
@@ -11,9 +28,10 @@ function guardarAlumno(){
     var telefonoRepresentante = document.getElementById('telefonoRepresentante').value;
     var direccion = document.getElementById('direccion').value;
     var observacion = document.getElementById('observacion').value;
+    var idMaestro = document.getElementById('selectMaestros').value;
 
     var r = new XMLHttpRequest();
-    r.open("POST",`${url}/guardarAlumno/${apellidos}/${nombres}/${fechaNacimiento}/${apellidosRepresentante}/${nombresRepresentante}/${cedulaRepresentante}/${telefonoRepresentante}/${direccion}/${observacion}`, true);
+    r.open("POST",`${url}/guardarAlumno/${apellidos}/${nombres}/${fechaNacimiento}/${apellidosRepresentante}/${nombresRepresentante}/${cedulaRepresentante}/${telefonoRepresentante}/${direccion}/${observacion}/${idMaestro}`, true);
     r.onload = function(){
         alert(this.response);
     }
@@ -62,7 +80,6 @@ function verAlumno(id){
         rr.open("GET", `${url}/verAlumno/${id}`);
 
         rr.onload = function(){
-            //console.log(JSON.parse(this.response));
             var dato = JSON.parse(this.response);
             document.getElementById('apellidos2').value = dato.apellidos;
             document.getElementById('nombres2').value = dato.nombres;
@@ -75,6 +92,24 @@ function verAlumno(id){
             document.getElementById('observacion2').value = dato.observacion;
             document.getElementById('_id').value = id;
             document.getElementById('pills-home-tab').classList.remove('active');
+            console.log(dato);
+
+            var rrr = new XMLHttpRequest();
+            rrr.open("GET", `${url}/traerMaestros`, true);
+            rrr.onload = function(){
+                var listaMaestros = JSON.parse(this.response);
+                var lista = "<option value=\"\">Seleccione</option>";
+                var seleccion = "";
+                for(var t = 0; t < listaMaestros.length; t++){
+                    if(dato.idMaestro === listaMaestros[t]._id){
+                        seleccion = "selected";
+                    }
+                    lista += `<option ${seleccion} value=\"${listaMaestros[t]._id}\">${listaMaestros[t].apellidos} ${listaMaestros[t].nombres}</option>`;
+                    seleccion = "";
+                }
+                document.getElementById('selectMaestros2').innerHTML = lista;
+            }
+            rrr.send();
         }
         rr.send();
     }

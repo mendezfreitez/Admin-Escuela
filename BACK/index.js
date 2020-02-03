@@ -26,10 +26,22 @@ const modelAlumno = mongoose.model("alumnos", mongoose.Schema({
     cedulaRepre:String,
     telefonoRepre:String,
     direccion:String,
-    observacion:String
+    observacion:String,
+    idMaestro:String
 }));
 
-app.post("/guardarAlumno/:apellidos/:nombres/:fechaNacimiento/:apellidosRepresentante/:nombresRepresentante/:cedulaRepresentante/:telefonoRepresentante/:direccion/:observacion", function(req, res){
+app.get('/traerMaestros', function(req, res){
+    modelMaestro.find(function(err, resultado){
+        if(err){
+            res.send(err);
+        }
+        else{
+            res.send(resultado);
+        }
+    });
+});
+
+app.post("/guardarAlumno/:apellidos/:nombres/:fechaNacimiento/:apellidosRepresentante/:nombresRepresentante/:cedulaRepresentante/:telefonoRepresentante/:direccion/:observacion/:idMaestro", function(req, res){
    const alumno = new modelAlumno({
     apellidos:req.params.apellidos,
     nombres:req.params.nombres,
@@ -39,7 +51,8 @@ app.post("/guardarAlumno/:apellidos/:nombres/:fechaNacimiento/:apellidosRepresen
     cedulaRepre:req.params.cedulaRepresentante,
     telefonoRepre:req.params.telefonoRepresentante,
     direccion:req.params.direccion,
-    observacion:req.params.observacion
+    observacion:req.params.observacion,
+    idMaestro:req.params.idMaestro
    });
 
    alumno.save(function(err){
