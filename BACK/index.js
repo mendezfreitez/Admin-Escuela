@@ -27,7 +27,8 @@ const modelAlumno = mongoose.model("alumnos", mongoose.Schema({
     telefonoRepre:String,
     direccion:String,
     observacion:String,
-    idMaestro:String
+    idMaestro:String,
+    maximoAlumnos:Number
 }));
 
 app.get('/traerMaestros', function(req, res){
@@ -52,7 +53,7 @@ app.post("/guardarAlumno/:apellidos/:nombres/:fechaNacimiento/:apellidosRepresen
     telefonoRepre:req.params.telefonoRepresentante,
     direccion:req.params.direccion,
     observacion:req.params.observacion,
-    idMaestro:req.params.idMaestro
+    idMaestro:req.params.idMaestro,
    });
 
    alumno.save(function(err){
@@ -127,17 +128,19 @@ var modelMaestro = mongoose.model('maestros', mongoose.Schema({
     fecha:String,
     cedula:String,
     direccion:String,
-    observacion:String
+    observacion:String,
+    maximoAlumnos:Number
 }));
 
-app.post('/guardarMaestro/:apellidos/:nombres/:fecha/:cedula/:direccion/:observacion', function(req,res){
+app.post('/guardarMaestro/:apellidos/:nombres/:fecha/:cedula/:direccion/:observacion/:maximoAlumnos', function(req,res){
     var unMaestro = new modelMaestro({
         apellidos:req.params.apellidos,
         nombres:req.params.nombres,
         fecha:req.params.fecha,
         cedula:req.params.cedula,
         direccion:req.params.direccion,
-        observacion:req.params.observacion
+        observacion:req.params.observacion,
+        maximoAlumnos:req.params.maximoAlumnos
     });
     unMaestro.save(function(err){
         if(err){

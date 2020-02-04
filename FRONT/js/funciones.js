@@ -172,9 +172,10 @@ function guardarMaestro(){
     var cedula = document.getElementById('cedulaMaestro').value;
     var direccion = document.getElementById('direccionMaestro').value;
     var observacion = document.getElementById('observacionMaestro').value;
+    var maximoAlumnos = document.getElementById('maximoAlumnos').value;
 
     var r = new XMLHttpRequest();
-    r.open("POST", `${url}/guardarMaestro/${apellidos}/${nombres}/${fecha}/${cedula}/${direccion}/${observacion}`);
+    r.open("POST", `${url}/guardarMaestro/${apellidos}/${nombres}/${fecha}/${cedula}/${direccion}/${observacion}/${maximoAlumnos}`);
     r.onload = function(){
         alert(this.response);
     }
@@ -220,6 +221,7 @@ function verMaestro(id){
         rr.open("GET", `${url}/verMaestro/${id}`, true);
         rr.onload = function(){
             var maestro = JSON.parse(this.response);
+            console.log(maestro);
             document.getElementById('apellidosMaestro2').value = maestro.apellidos;
             document.getElementById('nombresMaestro2').value = maestro.nombres;
             document.getElementById('fechaNacMaestro2').value = maestro.fecha;
