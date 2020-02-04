@@ -186,7 +186,7 @@ app.get('/verMaestro/:id', function(req, res){
     });
 });
 
-app.post('/guardarEdicionMaestro/:apellidos/:nombres/:fecha/:cedula/:direccion/:observacion/:id', function(req, res){
+app.post('/guardarEdicionMaestro/:apellidos/:nombres/:fecha/:cedula/:direccion/:observacion/:id/:maximoAlumnos', function(req, res){
     var unMaestro = new modelMaestro({
         apellidos: req.params.apellidos,
         nombres: req.params.nombres,
@@ -194,6 +194,7 @@ app.post('/guardarEdicionMaestro/:apellidos/:nombres/:fecha/:cedula/:direccion/:
         cedula: req.params.cedula,
         direccion: req.params.direccion,
         observacion: req.params.observacion,
+        maximoAlumnos:parseInt(req.params.maximoAlumnos),
         _id: req.params.id
     });
     modelMaestro.findByIdAndUpdate(req.params.id, {$set:unMaestro}, function(err){
@@ -202,6 +203,17 @@ app.post('/guardarEdicionMaestro/:apellidos/:nombres/:fecha/:cedula/:direccion/:
         }
         else{
             res.send("1");
+        }
+    });
+});
+
+app.get('/alumnosdeMaestro/:idMaestro', function(req, res){
+    modelAlumno.find({idMaestro:req.params.idMaestro}, function(err, resultado){
+        if(err){
+            res.send(err);
+        }
+        else{
+            res.send(resultado);
         }
     });
 });

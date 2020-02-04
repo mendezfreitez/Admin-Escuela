@@ -229,7 +229,16 @@ function verMaestro(id){
             document.getElementById('direccionMaestro2').value = maestro.direccion;
             document.getElementById('observacionMaestro2').value = maestro.observacion;
             document.getElementById('_id_').value = maestro._id;
+            document.getElementById('alumnosMaximo').value = maestro.maximoAlumnos;
             document.getElementById('pills-maestros-tab').classList.remove('active');
+            
+            var rrr = new XMLHttpRequest();
+            rrr.open("GET", `${url}/alumnosdeMaestro/${maestro._id}`, true);
+            rrr.onload = function(){
+                var alumnos = JSON.parse(this.response);
+                document.getElementById('alumnosAsignados').value = alumnos.length;
+            }
+            rrr.send();
         }
         rr.send();
     }
@@ -243,6 +252,7 @@ function editarMaestro(){
     document.getElementById('cedulaMaestro2').removeAttribute('disabled');
     document.getElementById('direccionMaestro2').removeAttribute('disabled');
     document.getElementById('observacionMaestro2').removeAttribute('disabled');
+    document.getElementById('alumnosMaximo').removeAttribute('disabled');
     document.getElementById('btnGuardarEdicionMaestro').setAttribute('style', 'display:inline-block');
     document.getElementById('btnEditarMaestro').setAttribute('style', 'display:none');
 }
@@ -255,9 +265,10 @@ function guardarEdicionMaestro(){
     var direccion = document.getElementById('direccionMaestro2').value;
     var observacion = document.getElementById('observacionMaestro2').value;
     var _id = document.getElementById('_id_').value;
+    var maximoAlumnos = document.getElementById('alumnosMaximo').value;
 
     var r = new XMLHttpRequest();
-    r.open("POST", `${url}/guardarEdicionMaestro/${apellidos}/${nombres}/${fecha}/${cedula}/${direccion}/${observacion}/${_id}`, true);
+    r.open("POST", `${url}/guardarEdicionMaestro/${apellidos}/${nombres}/${fecha}/${cedula}/${direccion}/${observacion}/${_id}/${maximoAlumnos}`, true);
     r.onload = function(){
         if(this.response === "1"){
             alert("Guardado con éxito.");
