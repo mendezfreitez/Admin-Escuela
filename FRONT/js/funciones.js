@@ -3,6 +3,7 @@ document.getElementById('pills-home-tab').classList.remove('active');
 var lista = "";
 
 function traerMaestros(){
+    var resta = 0;
     var r = new XMLHttpRequest();
     r.open("GET", `${url}/traerMaestros`, true);
     r.onload = function(){
@@ -11,6 +12,9 @@ function traerMaestros(){
 
         //console.log(listaMaestros);
         for(var t = 0; t < listaMaestros.length; t++){
+
+            resta = datosMaestro(listaMaestros[t]._id);
+            //console.log(resta);
             lista += `<option value=\"${listaMaestros[t]._id}\">${listaMaestros[t].apellidos} ${listaMaestros[t].nombres}</option>`;
         }
         document.getElementById('selectMaestros').innerHTML = lista;
@@ -293,4 +297,25 @@ function borrarMaestro(id){
         }
         r.send();
     }
+}
+
+function datosMaestro(id){
+    var maestro;
+    var alumnos;
+    var resta;
+    var r = new XMLHttpRequest();
+    r.open("GET", `${url}/verMaestro/${id}`, true);
+    r.onload = function(){
+        maestro = JSON.parse(this.response);
+        var rr = new XMLHttpRequest();
+        rr.open("GET", `${url}/alumnosdeMaestro/${maestro._id}`, true);
+        rr.onload = function(){
+
+            alumnos = JSON.parse(this.response);
+            resta = maestro.maximoAlumnos - alumnos.length;
+            console.log(alumnos.length, maestro.maximoAlumnos);
+        }
+        rr.send();
+    }
+    r.send();
 }
