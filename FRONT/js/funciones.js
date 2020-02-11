@@ -300,22 +300,23 @@ function borrarMaestro(id){
 }
 
 function datosMaestro(id){
-    var maestro;
-    var alumnos;
-    var resta;
-    var r = new XMLHttpRequest();
-    r.open("GET", `${url}/verMaestro/${id}`, true);
-    r.onload = function(){
-        maestro = JSON.parse(this.response);
-        var rr = new XMLHttpRequest();
-        rr.open("GET", `${url}/alumnosdeMaestro/${maestro._id}`, true);
-        rr.onload = function(){
+        var maestro;
+        var alumnos;
+        var resta;
+        var r = new XMLHttpRequest();
+        r.open("GET", `${url}/verMaestro/${id}`, true);
+        r.onload = function(){
+            maestro = JSON.parse(this.response);
+            var rr = new XMLHttpRequest();
+            rr.open("GET", `${url}/alumnosdeMaestro/${maestro._id}`, true);
+            rr.onload = function(){
 
-            alumnos = JSON.parse(this.response);
-            resta = maestro.maximoAlumnos - alumnos.length;
-            console.log(alumnos.length, maestro.maximoAlumnos);
+                alumnos = JSON.parse(this.response);
+                resta = maestro.maximoAlumnos - alumnos.length;
+                console.log(alumnos.length, maestro.maximoAlumnos);
+            }
+            rr.send();
         }
-        rr.send();
-    }
-    r.send();
+        r.send();
+        return resta;
 }
