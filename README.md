@@ -7,4 +7,6 @@ Tanto la creación de usuario asi como la gestión de sus permisos se administra
 
 La segunda etapa de este proyecto consta de la generación de boletines informáticos del alumno y envío por correo electrónico a su apoderado como archivo PDF...
 
+Cabe mencionar que para este proyecto se utilizaron las siguientes herramientas: VueJS, Vuetify, MySQL, NodeJS(express) y una demo de plantilla para VueJS
+
 Puede acceder al proyecto mediante el siguiente enlace: https://escuela-app.web.app/
